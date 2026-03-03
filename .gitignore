@@ -1,0 +1,38 @@
+# ── Python ─────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+.env
+
+# ── Data (never commit raw/sensitive data) ─────────────
+data/raw/*.csv
+data/raw/*.zip
+data/processed/
+
+# ── ML Artifacts ───────────────────────────────────────
+models/*.joblib
+!models/best_model.joblib
+models/*.pkl
+mlruns/
+
+# ── Jupyter ────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ── IDE ────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+
+# ── OS ─────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Logs ───────────────────────────────────────────────
+*.log
+logs/
