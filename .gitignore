@@ -11,6 +11,7 @@ env/
 
 # ── Data (never commit raw/sensitive data) ─────────────
 data/raw/*.csv
+!data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv
 data/raw/*.zip
 data/processed/
 
