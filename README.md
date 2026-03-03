@@ -12,7 +12,7 @@ A professional, end-to-end Machine Learning project designed to identify telecom
 
 This project goes beyond standard accuracy metrics (like AUC or F1-score) by explicitly answering the business question: **"How much money can this model save the company?"**
 
-🚀 **[Access the Live Interactive Dashboard Here](https://tu-enlace-en-streamlit.app)**
+🚀 **[Access the Live Interactive Dashboard Here](https://churn-prediction-ds.streamlit.app/)**
 
 ### Key Features
 1. **Robust ML Pipeline**: Implements XGBoost, RandomForest, and Logistic Regression, handling class imbalance natively and via `SMOTE`.
