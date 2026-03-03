@@ -162,22 +162,56 @@ def train(model: str, threshold: float, no_smote: bool, experiment: str, ltv: fl
         # Print executive summary
         print("\n" + calc.format_summary(biz_report))
 
-        # ── 5. Save Model ─────────────────────────────────────────────────────
-        logger.info("\n[5/5] Saving model...")
+        # ── 5. Evaluate candidate against existing model ──────────────────────
+        logger.info("\n[5/5] Evaluating candidate against existing model...")
         fitted_pipeline = mp.fitted_pipelines[model]
         output_path = MODELS_DIR / "best_model.joblib"
-        joblib.dump(fitted_pipeline, output_path)
+        
+        save_model = True
+        if output_path.exists():
+            try:
+                # Load old model and evaluate on the same current test set
+                old_model = joblib.load(output_path)
+                y_prob_old = old_model.predict_proba(mp.X_test)[:, 1]
+                y_pred_old = (y_prob_old >= threshold).astype(int)
+                
+                biz_report_old = calc.compute(
+                    y_true=mp.y_test,
+                    y_pred=y_pred_old,
+                    y_prob=y_prob_old,
+                )
+                
+                new_roi = biz_report["model_roi_pct"]
+                old_roi = biz_report_old["model_roi_pct"]
+                
+                logger.info(f"Candidate Model ROI: {new_roi:.1f}%")
+                logger.info(f"Existing Model ROI:  {old_roi:.1f}%")
+                
+                if new_roi > old_roi:
+                    logger.success("🚀 Candidate model is BETTER. Updating best_model.joblib.")
+                    save_model = True
+                else:
+                    logger.warning("📉 Candidate model is NOT better. Keeping existing model.")
+                    save_model = False
+            except Exception as e:
+                logger.warning(f"Failed to evaluate old model. Overwriting by default. Error: {e}")
+                save_model = True
+        else:
+            logger.info("No existing model found. Saving for the first time.")
 
-        # Log model artifact to MLflow
-        mlflow.sklearn.log_model(
-            fitted_pipeline,
-            artifact_path="model",
-            registered_model_name=f"churn_{model}",
-        )
-        mlflow.log_artifact(str(output_path), artifact_path="joblib")
+        if save_model:
+            joblib.dump(fitted_pipeline, output_path)
+
+            # Log model artifact to MLflow
+            mlflow.sklearn.log_model(
+                fitted_pipeline,
+                artifact_path="model",
+                registered_model_name=f"churn_{model}",
+            )
+            mlflow.log_artifact(str(output_path), artifact_path="joblib")
+            logger.info(f"✓ Model saved to: {output_path}")
 
         run_url = mlflow.get_tracking_uri()
-        logger.info(f"✓ Model saved to: {output_path}")
         logger.info(f"✓ MLflow run logged. View with: mlflow ui")
         logger.info(f"  Tracking URI: {run_url}")
         logger.info("=" * 55)

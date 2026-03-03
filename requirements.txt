@@ -16,6 +16,9 @@ joblib>=1.4.2
 # MLOps & Experiment Tracking
 mlflow>=2.17.2
 
+# Automation / CI-CD
+kaggle>=1.6.14
+
 # Visualization
 plotly>=5.22.0
 matplotlib>=3.9.0
