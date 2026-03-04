@@ -17,7 +17,7 @@ This project goes beyond standard accuracy metrics (like AUC or F1-score) by exp
 ### Key Features
 1. **Robust ML Pipeline**: Implements XGBoost, RandomForest, and Logistic Regression, handling class imbalance natively and via `SMOTE`.
 2. **Business Feature Engineering**: Translates raw Telco data into actionable risk features (e.g., `ContractRisk`, `PaymentRisk`, `MonthlyChargesPerService`).
-3. **MLOps Best Practices**: Uses `MLflow` for experiment tracking, parameter logging, and artifact management.
+3. **MLOps & CI/CD**: Uses `MLflow` for experiment tracking and features a fully automated Continuous Training pipeline via **GitHub Actions** that updates the active model only if ROI improves.
 4. **Interactive Dashboard**: A 5-page Streamlit application allowing non-technical stakeholders to explore data, visualize model results, make live predictions, and calculate campaign ROI.
 
 ## 🏗️ Architecture & Structure
@@ -80,5 +80,4 @@ When translated into a targeted retention campaign (assuming a LTV of €2,400, 
 
 ## 🚀 Future Work
 - Implement hyperparameter tuning (GridSearchCV/Optuna).
-- Add CI/CD pipelines with GitHub Actions.
 - Containerize the application using Docker for scalable deployment.
