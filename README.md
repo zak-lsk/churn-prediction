@@ -1,4 +1,4 @@
-# 📡 Customer Churn Prediction with Business Impact
+# Customer Churn Prediction with Business Impact
 
 A professional, end-to-end Machine Learning project designed to identify telecommunication customers at risk of churning and translate model performance into tangible business impact (ROI).
 
@@ -8,11 +8,11 @@ A professional, end-to-end Machine Learning project designed to identify telecom
 ![MLflow](https://img.shields.io/badge/MLflow-Experiment_Tracking-blue.svg)
 ![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B.svg)
 
-## 📌 Project Overview
+##  Project Overview
 
 This project goes beyond standard accuracy metrics (like AUC or F1-score) by explicitly answering the business question: **"How much money can this model save the company?"**
 
-🚀 **[Access the Live Interactive Dashboard Here](https://churn-prediction-ds.streamlit.app/)**
+ **[Access the Live Interactive Dashboard Here](https://churn-prediction-ds.streamlit.app/)**
 
 ### Key Features
 1. **Robust ML Pipeline**: Implements XGBoost, RandomForest, and Logistic Regression, handling class imbalance natively and via `SMOTE`.
@@ -20,7 +20,7 @@ This project goes beyond standard accuracy metrics (like AUC or F1-score) by exp
 3. **MLOps & CI/CD**: Uses `MLflow` for experiment tracking and features a fully automated Continuous Training pipeline via **GitHub Actions** that updates the active model only if ROI improves.
 4. **Interactive Dashboard**: A 5-page Streamlit application allowing non-technical stakeholders to explore data, visualize model results, make live predictions, and calculate campaign ROI.
 
-## 🏗️ Architecture & Structure
+## Architecture & Structure
 
 ```text
 churn_prediction/
@@ -43,7 +43,7 @@ churn_prediction/
 └── README.md
 ```
 
-## 🚀 Quickstart
+## Quickstart
 
 ### 1. Local Setup
 If you want to run this project locally to train new models or explore the code:
@@ -69,7 +69,7 @@ python src/train.py --model xgboost
 ```
 You can view the experiment logs by running `mlflow ui`.
 
-## 📊 Results & Business Impact
+## Results & Business Impact
 
 The baseline XGBoost model achieves strong recall (identifying ~86% of potential churners).
 When translated into a targeted retention campaign (assuming a LTV of €2,400, retention cost of €150, and a 25% success rate), the model generates significant incremental net benefit compared to an untargeted (baseline) campaign.
@@ -78,6 +78,6 @@ When translated into a targeted retention campaign (assuming a LTV of €2,400, 
 
 ---
 
-## 🚀 Future Work
+## Future Work
 - Implement hyperparameter tuning (GridSearchCV/Optuna).
 - Containerize the application using Docker for scalable deployment.

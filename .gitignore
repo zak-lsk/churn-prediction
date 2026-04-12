@@ -20,6 +20,7 @@ models/*.joblib
 !models/best_model.joblib
 models/*.pkl
 mlruns/
+mlflow.db
 
 # ── Jupyter ────────────────────────────────────────────
 .ipynb_checkpoints/
