@@ -32,7 +32,7 @@ jobs:
         
     - name: Run Training Pipeline
       env:
-        MLFLOW_TRACKING_URI: ./mlruns
+        MLFLOW_TRACKING_URI: sqlite:///mlflow_ci.db
       run: |
         python src/train.py --model xgboost
         
